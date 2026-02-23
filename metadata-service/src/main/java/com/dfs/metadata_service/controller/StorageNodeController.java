@@ -1,0 +1,45 @@
+// StorageNodeController.java
+package com.dfs.metadata_service.controller;
+
+import com.dfs.metadata_service.entity.StorageNode;
+import com.dfs.metadata_service.service.StorageNodeService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+
+
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/nodes")
+@RequiredArgsConstructor
+public class StorageNodeController {
+
+    private final StorageNodeService service;
+
+    @PostMapping("/register")
+    public StorageNode registerNode(@RequestBody StorageNode node) {
+        return service.registerNode(node);
+    }
+    @PostMapping("/heartbeat")
+    public ResponseEntity<?> heartbeat(@RequestBody HeartbeatRequest request) {
+        Optional<StorageNode> updated = service.heartbeat(
+                request.getIpAddress(),
+                request.getPort()
+        );
+
+        if (updated.isPresent()) {
+            return ResponseEntity.ok(updated.get());
+        } else {
+            return ResponseEntity.badRequest().body("Storage node not found");
+        }
+    }
+
+    @Data
+    static class HeartbeatRequest {
+        private String ipAddress;
+        private Integer port;
+    }
+}

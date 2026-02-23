@@ -1,0 +1,31 @@
+// Chunk.java
+package com.dfs.metadata_service.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Chunk {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "file_id", nullable = false)
+    private File file;
+
+    private Integer chunkIndex;
+
+    private String storageNodeIds;
+
+    private String checksum;
+
+    public Long getStorageNodeId() {
+        return null;
+    }
+}
