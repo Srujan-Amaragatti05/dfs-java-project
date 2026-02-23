@@ -12,3 +12,5 @@ public interface StorageNodeRepository extends JpaRepository<StorageNode, Long> 
     Optional<StorageNode> findByIpAddressAndPort(String ipAddress, Integer port);
     List<StorageNode> findByStatus(Status status);
 }
+
+// update: 2026-05-14 23:30:30.539752
