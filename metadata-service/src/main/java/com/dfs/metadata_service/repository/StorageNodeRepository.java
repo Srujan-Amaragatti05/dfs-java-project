@@ -20,3 +20,5 @@ public interface StorageNodeRepository extends JpaRepository<StorageNode, Long> 
 // update: 2026-05-14 23:30:47.178495
 
 // update: 2026-05-14 23:30:49.990826
+
+// update: 2026-05-14 23:30:53.503992
