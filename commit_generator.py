@@ -101,6 +101,10 @@ while current_date <= END_DATE:
 
 print("\nDone generating commit timeline.")
 '''
+Control Panel
+→ Credential Manager
+→ Windows Credentials
+
 rmdir /s /q .git     
 
 git init
